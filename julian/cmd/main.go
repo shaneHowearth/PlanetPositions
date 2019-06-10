@@ -5,7 +5,8 @@ import (
 	"log"
 	"net"
 
-	pb "planetpositions/julian/grpc/v1"
+	v1 "planetpositions/julian/grpc/v1"
+	julian "planetpositions/julian/pkg/v1/service"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -23,13 +24,15 @@ func main() {
 		log.Fatal("Failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	pb.RegisterJulianServiceServer(s, &server{})
+	v1.RegisterJulianServiceServer(s, &server{})
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
 }
 
-func (s *server) Create(ctx context.Context, req *pb.ConvertRequest) (*pb.ConvertResponse, error) {
-	return &pb.ConvertResponse{}, nil
+// Create -
+func (s *server) Create(ctx context.Context, req *v1.ConvertRequest) (*v1.ConvertResponse, error) {
+	jd := julian.GetJulianDay(req.GetYear(), req.GetMonth(), req.GetDay(), req.GetHour())
+	return &v1.ConvertResponse{JulianDateTime: jd}, nil
 }

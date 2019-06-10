@@ -1,7 +1,7 @@
 package julian
 
 // GetJulianDay -
-func GetJulianDay(year, month, day int, universalTime float64) float64 {
+func GetJulianDay(year, month, day int32, universalTime float64) float64 {
 	// This function converts a gregorian date/time to a Julian day
 	// universal_time is comprised of hours and fraction of hours
 	// eg. 7:30am would be 7.5
