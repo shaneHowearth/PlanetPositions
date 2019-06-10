@@ -1,0 +1,22 @@
+syntax = "proto3";
+package v1;
+
+// ToConvert
+message ConvertRequest {
+    // Date and time to convert
+    int32 year = 1;
+    int32 month = 2;
+    int32 day = 3;
+    double hour = 4;
+}
+
+// Response that contains data for created todo task
+message ConvertResponse{
+    double julianDateTime = 1;
+}
+
+// Service to manage list of todo tasks
+service JulianService {
+    // Create new todo task
+    rpc Create(ConvertRequest) returns (ConvertResponse);
+}
