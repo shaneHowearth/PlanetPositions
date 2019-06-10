@@ -17,6 +17,6 @@ message ConvertResponse{
 
 // Service to manage list of todo tasks
 service JulianService {
-    // Create new todo task
-    rpc Create(ConvertRequest) returns (ConvertResponse);
+    // Convert to Julian date
+    rpc Convert(ConvertRequest) returns (ConvertResponse);
 }
