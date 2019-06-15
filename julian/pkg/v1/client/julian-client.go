@@ -10,11 +10,11 @@ import (
 	"google.golang.org/grpc"
 )
 
-type julianClient struct {
+type JulianClient struct {
 	address string
 }
 
-func (j *julianClient) Convert(year, month, day int32, hour float64) (*v1.ConvertResponse, error) {
+func (j *JulianClient) Convert(year, month, day int32, hour float64) (*v1.ConvertResponse, error) {
 
 	// Should I pool this?
 	// Set up a connection to the server.

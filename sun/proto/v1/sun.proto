@@ -1,7 +1,6 @@
 syntax = "proto3";
 package v1;
 
-import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 
@@ -36,12 +35,18 @@ message SunriseRequest{
 	string api = 1;
 	double longitude = 2;
 	double latitude = 3;
-	google.protobuf.Timestamp date = 4;
+	int32 year = 4;
+	int32 month = 5;
+	int32 day = 6;
+	double hour = 7;
 }
 
 message SunriseTime{
 	string api = 1;
-	google.protobuf.Timestamp sunrise = 2;
+	int32 year = 2;
+	int32 month = 3;
+	int32 day = 4;
+	double hour = 5;
 }
 
 // Service to manage Sun tasks
