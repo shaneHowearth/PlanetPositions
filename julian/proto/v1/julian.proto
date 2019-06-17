@@ -15,8 +15,17 @@ message ConvertResponse{
     double julianDateTime = 1;
 }
 
+message JulianResponse{
+    double julianDateTime = 1;
+}
+
+message JulianRequest{
+    double julianDateTime = 1;
+}
+
 // Service to manage list of todo tasks
 service JulianService {
     // Convert to Julian date
     rpc Convert(ConvertRequest) returns (ConvertResponse);
+    rpc TimeJulianCentury(JulianRequest) returns (JulianResponse);
 }

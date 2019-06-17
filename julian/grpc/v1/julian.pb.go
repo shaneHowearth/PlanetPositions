@@ -127,15 +127,95 @@ func (m *ConvertResponse) GetJulianDateTime() float64 {
 	return 0
 }
 
+type JulianResponse struct {
+	JulianDateTime       float64  `protobuf:"fixed64,1,opt,name=julianDateTime,proto3" json:"julianDateTime,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *JulianResponse) Reset()         { *m = JulianResponse{} }
+func (m *JulianResponse) String() string { return proto.CompactTextString(m) }
+func (*JulianResponse) ProtoMessage()    {}
+func (*JulianResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_838069e7f4e90ff2, []int{2}
+}
+
+func (m *JulianResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_JulianResponse.Unmarshal(m, b)
+}
+func (m *JulianResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_JulianResponse.Marshal(b, m, deterministic)
+}
+func (m *JulianResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_JulianResponse.Merge(m, src)
+}
+func (m *JulianResponse) XXX_Size() int {
+	return xxx_messageInfo_JulianResponse.Size(m)
+}
+func (m *JulianResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_JulianResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_JulianResponse proto.InternalMessageInfo
+
+func (m *JulianResponse) GetJulianDateTime() float64 {
+	if m != nil {
+		return m.JulianDateTime
+	}
+	return 0
+}
+
+type JulianRequest struct {
+	JulianDateTime       float64  `protobuf:"fixed64,1,opt,name=julianDateTime,proto3" json:"julianDateTime,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *JulianRequest) Reset()         { *m = JulianRequest{} }
+func (m *JulianRequest) String() string { return proto.CompactTextString(m) }
+func (*JulianRequest) ProtoMessage()    {}
+func (*JulianRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_838069e7f4e90ff2, []int{3}
+}
+
+func (m *JulianRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_JulianRequest.Unmarshal(m, b)
+}
+func (m *JulianRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_JulianRequest.Marshal(b, m, deterministic)
+}
+func (m *JulianRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_JulianRequest.Merge(m, src)
+}
+func (m *JulianRequest) XXX_Size() int {
+	return xxx_messageInfo_JulianRequest.Size(m)
+}
+func (m *JulianRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_JulianRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_JulianRequest proto.InternalMessageInfo
+
+func (m *JulianRequest) GetJulianDateTime() float64 {
+	if m != nil {
+		return m.JulianDateTime
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*ConvertRequest)(nil), "v1.ConvertRequest")
 	proto.RegisterType((*ConvertResponse)(nil), "v1.ConvertResponse")
+	proto.RegisterType((*JulianResponse)(nil), "v1.JulianResponse")
+	proto.RegisterType((*JulianRequest)(nil), "v1.JulianRequest")
 }
 
 func init() { proto.RegisterFile("julian.proto", fileDescriptor_838069e7f4e90ff2) }
 
 var fileDescriptor_838069e7f4e90ff2 = []byte{
-	// 191 bytes of a gzipped FileDescriptorProto
+	// 234 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xc9, 0x2a, 0xcd, 0xc9,
 	0x4c, 0xcc, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x2a, 0x33, 0x54, 0x4a, 0xe0, 0xe2,
 	0x73, 0xce, 0xcf, 0x2b, 0x4b, 0x2d, 0x2a, 0x09, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x12,
@@ -144,10 +224,13 @@ var fileDescriptor_838069e7f4e90ff2 = []byte{
 	0x17, 0x73, 0x4a, 0x62, 0xa5, 0x04, 0x33, 0x58, 0x0c, 0xc4, 0x04, 0xe9, 0xcd, 0xc8, 0x2f, 0x2d,
 	0x92, 0x60, 0x51, 0x60, 0xd4, 0x60, 0x0c, 0x02, 0xb3, 0x95, 0x2c, 0xb9, 0xf8, 0xe1, 0x36, 0x14,
 	0x17, 0xe4, 0xe7, 0x15, 0xa7, 0x0a, 0xa9, 0x71, 0xf1, 0x41, 0x1c, 0xe2, 0x92, 0x58, 0x92, 0x1a,
-	0x92, 0x99, 0x9b, 0x0a, 0xb6, 0x8c, 0x31, 0x08, 0x4d, 0xd4, 0xc8, 0x99, 0x8b, 0xd7, 0x0b, 0x2c,
-	0x12, 0x9c, 0x5a, 0x54, 0x96, 0x99, 0x9c, 0x2a, 0x64, 0xc4, 0xc5, 0x0e, 0x35, 0x4b, 0x48, 0x48,
-	0xaf, 0xcc, 0x50, 0x0f, 0xd5, 0xe9, 0x52, 0xc2, 0x28, 0x62, 0x10, 0xcb, 0x92, 0xd8, 0xc0, 0x9e,
-	0x35, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0x09, 0xbd, 0x80, 0xab, 0xfc, 0x00, 0x00, 0x00,
+	0x92, 0x99, 0x9b, 0x0a, 0xb6, 0x8c, 0x31, 0x08, 0x4d, 0x54, 0xc9, 0x82, 0x8b, 0xcf, 0x0b, 0x2c,
+	0x42, 0xb2, 0x4e, 0x73, 0x2e, 0x5e, 0x98, 0x4e, 0x88, 0xaf, 0x88, 0xd4, 0x68, 0x54, 0x0f, 0xd3,
+	0x18, 0x9c, 0x5a, 0x54, 0x96, 0x99, 0x9c, 0x2a, 0x64, 0xc4, 0xc5, 0x0e, 0x75, 0xbe, 0x90, 0x90,
+	0x5e, 0x99, 0xa1, 0x1e, 0x6a, 0x68, 0x49, 0x09, 0xa3, 0x88, 0x41, 0x5d, 0x69, 0xc5, 0x25, 0x08,
+	0x32, 0x0c, 0x62, 0x90, 0x73, 0x6a, 0x5e, 0x49, 0x69, 0x51, 0xa5, 0x90, 0x20, 0x48, 0x25, 0x8a,
+	0xa3, 0xa4, 0x84, 0x90, 0x85, 0x20, 0x7a, 0x93, 0xd8, 0xc0, 0x71, 0x63, 0x0c, 0x08, 0x00, 0x00,
+	0xff, 0xff, 0x91, 0x81, 0xc5, 0x28, 0xab, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -164,6 +247,7 @@ const _ = grpc.SupportPackageIsVersion4
 type JulianServiceClient interface {
 	// Convert to Julian date
 	Convert(ctx context.Context, in *ConvertRequest, opts ...grpc.CallOption) (*ConvertResponse, error)
+	TimeJulianCentury(ctx context.Context, in *JulianRequest, opts ...grpc.CallOption) (*JulianResponse, error)
 }
 
 type julianServiceClient struct {
@@ -183,10 +267,20 @@ func (c *julianServiceClient) Convert(ctx context.Context, in *ConvertRequest, o
 	return out, nil
 }
 
+func (c *julianServiceClient) TimeJulianCentury(ctx context.Context, in *JulianRequest, opts ...grpc.CallOption) (*JulianResponse, error) {
+	out := new(JulianResponse)
+	err := c.cc.Invoke(ctx, "/v1.JulianService/TimeJulianCentury", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // JulianServiceServer is the server API for JulianService service.
 type JulianServiceServer interface {
 	// Convert to Julian date
 	Convert(context.Context, *ConvertRequest) (*ConvertResponse, error)
+	TimeJulianCentury(context.Context, *JulianRequest) (*JulianResponse, error)
 }
 
 func RegisterJulianServiceServer(s *grpc.Server, srv JulianServiceServer) {
@@ -211,6 +305,24 @@ func _JulianService_Convert_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _JulianService_TimeJulianCentury_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JulianRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JulianServiceServer).TimeJulianCentury(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1.JulianService/TimeJulianCentury",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JulianServiceServer).TimeJulianCentury(ctx, req.(*JulianRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _JulianService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "v1.JulianService",
 	HandlerType: (*JulianServiceServer)(nil),
@@ -218,6 +330,10 @@ var _JulianService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Convert",
 			Handler:    _JulianService_Convert_Handler,
+		},
+		{
+			MethodName: "TimeJulianCentury",
+			Handler:    _JulianService_TimeJulianCentury_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
