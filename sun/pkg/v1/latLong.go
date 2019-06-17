@@ -19,54 +19,6 @@ func calcDayOfYear(month, day int32, leapYear bool) int32 {
 	return dayOfYear
 }
 
-func calcDayOfWeek(julianDay float64) int32 {
-	// Sunday is 0
-	a := int32((julianDay + float64(1.5))) % int32(7)
-	return a
-}
-
-func dayFromJulianDay(julianDay float64) (year, month, day int32) {
-	z := math.Floor(julianDay + float64(0.5))
-	f := (julianDay + float64(0.5)) - z
-	A := z
-	if !(z < float64(2299161)) {
-		alpha := math.Floor((z - float64(1867216.25)) / float64(36524.25))
-		A = z + float64(1) + alpha - math.Floor(alpha/float64(4))
-	}
-	yearLen := float64(365.25)
-	monthLen := float64(30.6001)
-	B := A + float64(1524)
-	C := math.Floor((B - float64(122.1)) / yearLen)
-	D := math.Floor(yearLen * C)
-	E := math.Floor((B - D) / monthLen)
-
-	day = int32(B - D - math.Floor(monthLen*E) + f)
-	month = int32(E) - int32(1)
-	if !(E < float64(14)) {
-		month -= int32(12)
-	}
-	year = int32(C) - int32(4715)
-	if month > 2 {
-		year = year - 1
-	}
-	return year, month, day
-}
-
-func calcGeomMeanLongSun(numCenturies float64) {
-
-}
-
-const jan12000 = float64(2451545)
-const century = float64(36525)
-
-func timeJulianCentury(julianDay float64) float64 {
-	return (julianDay - jan12000) / century
-}
-
-func julianDayFromJulianCentury(t float64) float64 {
-	return t*century + jan12000
-}
-
 func geometricMeanLongitudeSun(t float64) float64 {
 	l0 := 280.46646 + t*(36000.76983+0.0003032*t)
 	l0 = math.Mod(l0, 360)
