@@ -22,7 +22,6 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-// ToConvert
 type ConvertRequest struct {
 	// Date and time to convert
 	Year                 int32    `protobuf:"varint,1,opt,name=year,proto3" json:"year,omitempty"`
@@ -87,46 +86,6 @@ func (m *ConvertRequest) GetHour() float64 {
 	return 0
 }
 
-// Response that contains data for created todo task
-type ConvertResponse struct {
-	JulianDateTime       float64  `protobuf:"fixed64,1,opt,name=julianDateTime,proto3" json:"julianDateTime,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ConvertResponse) Reset()         { *m = ConvertResponse{} }
-func (m *ConvertResponse) String() string { return proto.CompactTextString(m) }
-func (*ConvertResponse) ProtoMessage()    {}
-func (*ConvertResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_838069e7f4e90ff2, []int{1}
-}
-
-func (m *ConvertResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ConvertResponse.Unmarshal(m, b)
-}
-func (m *ConvertResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ConvertResponse.Marshal(b, m, deterministic)
-}
-func (m *ConvertResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConvertResponse.Merge(m, src)
-}
-func (m *ConvertResponse) XXX_Size() int {
-	return xxx_messageInfo_ConvertResponse.Size(m)
-}
-func (m *ConvertResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ConvertResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ConvertResponse proto.InternalMessageInfo
-
-func (m *ConvertResponse) GetJulianDateTime() float64 {
-	if m != nil {
-		return m.JulianDateTime
-	}
-	return 0
-}
-
 type JulianResponse struct {
 	JulianDateTime       float64  `protobuf:"fixed64,1,opt,name=julianDateTime,proto3" json:"julianDateTime,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -138,7 +97,7 @@ func (m *JulianResponse) Reset()         { *m = JulianResponse{} }
 func (m *JulianResponse) String() string { return proto.CompactTextString(m) }
 func (*JulianResponse) ProtoMessage()    {}
 func (*JulianResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_838069e7f4e90ff2, []int{2}
+	return fileDescriptor_838069e7f4e90ff2, []int{1}
 }
 
 func (m *JulianResponse) XXX_Unmarshal(b []byte) error {
@@ -177,7 +136,7 @@ func (m *JulianRequest) Reset()         { *m = JulianRequest{} }
 func (m *JulianRequest) String() string { return proto.CompactTextString(m) }
 func (*JulianRequest) ProtoMessage()    {}
 func (*JulianRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_838069e7f4e90ff2, []int{3}
+	return fileDescriptor_838069e7f4e90ff2, []int{2}
 }
 
 func (m *JulianRequest) XXX_Unmarshal(b []byte) error {
@@ -205,32 +164,89 @@ func (m *JulianRequest) GetJulianDateTime() float64 {
 	return 0
 }
 
+type CalendarResponse struct {
+	Year                 int32    `protobuf:"varint,1,opt,name=year,proto3" json:"year,omitempty"`
+	Month                int32    `protobuf:"varint,2,opt,name=month,proto3" json:"month,omitempty"`
+	Day                  int32    `protobuf:"varint,3,opt,name=day,proto3" json:"day,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CalendarResponse) Reset()         { *m = CalendarResponse{} }
+func (m *CalendarResponse) String() string { return proto.CompactTextString(m) }
+func (*CalendarResponse) ProtoMessage()    {}
+func (*CalendarResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_838069e7f4e90ff2, []int{3}
+}
+
+func (m *CalendarResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CalendarResponse.Unmarshal(m, b)
+}
+func (m *CalendarResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CalendarResponse.Marshal(b, m, deterministic)
+}
+func (m *CalendarResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CalendarResponse.Merge(m, src)
+}
+func (m *CalendarResponse) XXX_Size() int {
+	return xxx_messageInfo_CalendarResponse.Size(m)
+}
+func (m *CalendarResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CalendarResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CalendarResponse proto.InternalMessageInfo
+
+func (m *CalendarResponse) GetYear() int32 {
+	if m != nil {
+		return m.Year
+	}
+	return 0
+}
+
+func (m *CalendarResponse) GetMonth() int32 {
+	if m != nil {
+		return m.Month
+	}
+	return 0
+}
+
+func (m *CalendarResponse) GetDay() int32 {
+	if m != nil {
+		return m.Day
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*ConvertRequest)(nil), "v1.ConvertRequest")
-	proto.RegisterType((*ConvertResponse)(nil), "v1.ConvertResponse")
 	proto.RegisterType((*JulianResponse)(nil), "v1.JulianResponse")
 	proto.RegisterType((*JulianRequest)(nil), "v1.JulianRequest")
+	proto.RegisterType((*CalendarResponse)(nil), "v1.CalendarResponse")
 }
 
 func init() { proto.RegisterFile("julian.proto", fileDescriptor_838069e7f4e90ff2) }
 
 var fileDescriptor_838069e7f4e90ff2 = []byte{
-	// 234 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xc9, 0x2a, 0xcd, 0xc9,
-	0x4c, 0xcc, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x2a, 0x33, 0x54, 0x4a, 0xe0, 0xe2,
-	0x73, 0xce, 0xcf, 0x2b, 0x4b, 0x2d, 0x2a, 0x09, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x12,
-	0xe2, 0x62, 0xa9, 0x4c, 0x4d, 0x2c, 0x92, 0x60, 0x54, 0x60, 0xd4, 0x60, 0x0d, 0x02, 0xb3, 0x85,
-	0x44, 0xb8, 0x58, 0x73, 0xf3, 0xf3, 0x4a, 0x32, 0x24, 0x98, 0xc0, 0x82, 0x10, 0x8e, 0x90, 0x00,
-	0x17, 0x73, 0x4a, 0x62, 0xa5, 0x04, 0x33, 0x58, 0x0c, 0xc4, 0x04, 0xe9, 0xcd, 0xc8, 0x2f, 0x2d,
-	0x92, 0x60, 0x51, 0x60, 0xd4, 0x60, 0x0c, 0x02, 0xb3, 0x95, 0x2c, 0xb9, 0xf8, 0xe1, 0x36, 0x14,
-	0x17, 0xe4, 0xe7, 0x15, 0xa7, 0x0a, 0xa9, 0x71, 0xf1, 0x41, 0x1c, 0xe2, 0x92, 0x58, 0x92, 0x1a,
-	0x92, 0x99, 0x9b, 0x0a, 0xb6, 0x8c, 0x31, 0x08, 0x4d, 0x54, 0xc9, 0x82, 0x8b, 0xcf, 0x0b, 0x2c,
-	0x42, 0xb2, 0x4e, 0x73, 0x2e, 0x5e, 0x98, 0x4e, 0x88, 0xaf, 0x88, 0xd4, 0x68, 0x54, 0x0f, 0xd3,
-	0x18, 0x9c, 0x5a, 0x54, 0x96, 0x99, 0x9c, 0x2a, 0x64, 0xc4, 0xc5, 0x0e, 0x75, 0xbe, 0x90, 0x90,
-	0x5e, 0x99, 0xa1, 0x1e, 0x6a, 0x68, 0x49, 0x09, 0xa3, 0x88, 0x41, 0x5d, 0x69, 0xc5, 0x25, 0x08,
-	0x32, 0x0c, 0x62, 0x90, 0x73, 0x6a, 0x5e, 0x49, 0x69, 0x51, 0xa5, 0x90, 0x20, 0x48, 0x25, 0x8a,
-	0xa3, 0xa4, 0x84, 0x90, 0x85, 0x20, 0x7a, 0x93, 0xd8, 0xc0, 0x71, 0x63, 0x0c, 0x08, 0x00, 0x00,
-	0xff, 0xff, 0x91, 0x81, 0xc5, 0x28, 0xab, 0x01, 0x00, 0x00,
+	// 267 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x92, 0x41, 0x4b, 0xc3, 0x40,
+	0x10, 0x85, 0xd9, 0xb4, 0x55, 0x18, 0x34, 0xa4, 0x43, 0x0f, 0xa1, 0xa7, 0x92, 0x83, 0xf4, 0x14,
+	0x88, 0x1e, 0x14, 0x3d, 0xa6, 0x78, 0xe8, 0xc1, 0xc3, 0xea, 0x0f, 0x70, 0xb5, 0x03, 0x8d, 0x34,
+	0xbb, 0x75, 0xb3, 0x09, 0xe4, 0xe6, 0x4f, 0x97, 0xcc, 0xb6, 0x62, 0x83, 0x82, 0xd8, 0xdb, 0xec,
+	0x63, 0xbf, 0x9d, 0xf7, 0x1e, 0x0b, 0x67, 0x6f, 0xf5, 0xa6, 0x50, 0x3a, 0xdd, 0x5a, 0xe3, 0x0c,
+	0x06, 0x4d, 0x96, 0x3c, 0x43, 0x98, 0x1b, 0xdd, 0x90, 0x75, 0x92, 0xde, 0x6b, 0xaa, 0x1c, 0x22,
+	0x0c, 0x5b, 0x52, 0x36, 0x16, 0x33, 0x31, 0x1f, 0x49, 0x9e, 0x71, 0x02, 0xa3, 0xd2, 0x68, 0xb7,
+	0x8e, 0x03, 0x16, 0xfd, 0x01, 0x23, 0x18, 0xac, 0x54, 0x1b, 0x0f, 0x58, 0xeb, 0xc6, 0x8e, 0x5d,
+	0x9b, 0xda, 0xc6, 0xc3, 0x99, 0x98, 0x0b, 0xc9, 0x73, 0x72, 0x03, 0xe1, 0x92, 0xb7, 0x4a, 0xaa,
+	0xb6, 0x46, 0x57, 0x84, 0x17, 0x10, 0x7a, 0x1f, 0x0b, 0xe5, 0xe8, 0xa9, 0x28, 0x89, 0x77, 0x09,
+	0xd9, 0x53, 0x93, 0x6b, 0x38, 0xdf, 0x93, 0xde, 0xda, 0x5f, 0xc1, 0x07, 0x88, 0x72, 0xb5, 0x21,
+	0xbd, 0x52, 0xf6, 0x6b, 0xe9, 0x11, 0xb1, 0x2e, 0x3f, 0x82, 0xbd, 0x93, 0x47, 0xb2, 0x4d, 0xf1,
+	0x4a, 0x98, 0xc1, 0xe9, 0xae, 0x36, 0xc4, 0xb4, 0xc9, 0xd2, 0xc3, 0x0e, 0xa7, 0xac, 0xf5, 0x52,
+	0xdf, 0xc2, 0xb8, 0x33, 0xe7, 0xd5, 0x9c, 0xb4, 0xab, 0x6d, 0x8b, 0xe3, 0xef, 0x17, 0x7f, 0x67,
+	0x73, 0x98, 0x2e, 0x77, 0x11, 0xdb, 0x7b, 0x6b, 0xca, 0x7f, 0x3d, 0x72, 0x07, 0xd1, 0x01, 0xbe,
+	0x50, 0x3f, 0xa2, 0x13, 0xce, 0xd3, 0xab, 0xef, 0xe5, 0x84, 0xbf, 0xcc, 0xd5, 0x67, 0x00, 0x00,
+	0x00, 0xff, 0xff, 0x64, 0x73, 0x88, 0xab, 0x42, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -246,8 +262,10 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type JulianServiceClient interface {
 	// Convert to Julian date
-	Convert(ctx context.Context, in *ConvertRequest, opts ...grpc.CallOption) (*ConvertResponse, error)
+	Convert(ctx context.Context, in *ConvertRequest, opts ...grpc.CallOption) (*JulianResponse, error)
 	TimeJulianCentury(ctx context.Context, in *JulianRequest, opts ...grpc.CallOption) (*JulianResponse, error)
+	JulianDayFromJulianCentury(ctx context.Context, in *JulianRequest, opts ...grpc.CallOption) (*JulianResponse, error)
+	DayFromJulianDay(ctx context.Context, in *JulianRequest, opts ...grpc.CallOption) (*CalendarResponse, error)
 }
 
 type julianServiceClient struct {
@@ -258,8 +276,8 @@ func NewJulianServiceClient(cc *grpc.ClientConn) JulianServiceClient {
 	return &julianServiceClient{cc}
 }
 
-func (c *julianServiceClient) Convert(ctx context.Context, in *ConvertRequest, opts ...grpc.CallOption) (*ConvertResponse, error) {
-	out := new(ConvertResponse)
+func (c *julianServiceClient) Convert(ctx context.Context, in *ConvertRequest, opts ...grpc.CallOption) (*JulianResponse, error) {
+	out := new(JulianResponse)
 	err := c.cc.Invoke(ctx, "/v1.JulianService/Convert", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -276,11 +294,31 @@ func (c *julianServiceClient) TimeJulianCentury(ctx context.Context, in *JulianR
 	return out, nil
 }
 
+func (c *julianServiceClient) JulianDayFromJulianCentury(ctx context.Context, in *JulianRequest, opts ...grpc.CallOption) (*JulianResponse, error) {
+	out := new(JulianResponse)
+	err := c.cc.Invoke(ctx, "/v1.JulianService/JulianDayFromJulianCentury", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *julianServiceClient) DayFromJulianDay(ctx context.Context, in *JulianRequest, opts ...grpc.CallOption) (*CalendarResponse, error) {
+	out := new(CalendarResponse)
+	err := c.cc.Invoke(ctx, "/v1.JulianService/DayFromJulianDay", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // JulianServiceServer is the server API for JulianService service.
 type JulianServiceServer interface {
 	// Convert to Julian date
-	Convert(context.Context, *ConvertRequest) (*ConvertResponse, error)
+	Convert(context.Context, *ConvertRequest) (*JulianResponse, error)
 	TimeJulianCentury(context.Context, *JulianRequest) (*JulianResponse, error)
+	JulianDayFromJulianCentury(context.Context, *JulianRequest) (*JulianResponse, error)
+	DayFromJulianDay(context.Context, *JulianRequest) (*CalendarResponse, error)
 }
 
 func RegisterJulianServiceServer(s *grpc.Server, srv JulianServiceServer) {
@@ -323,6 +361,42 @@ func _JulianService_TimeJulianCentury_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _JulianService_JulianDayFromJulianCentury_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JulianRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JulianServiceServer).JulianDayFromJulianCentury(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1.JulianService/JulianDayFromJulianCentury",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JulianServiceServer).JulianDayFromJulianCentury(ctx, req.(*JulianRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JulianService_DayFromJulianDay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JulianRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JulianServiceServer).DayFromJulianDay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1.JulianService/DayFromJulianDay",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JulianServiceServer).DayFromJulianDay(ctx, req.(*JulianRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _JulianService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "v1.JulianService",
 	HandlerType: (*JulianServiceServer)(nil),
@@ -334,6 +408,14 @@ var _JulianService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TimeJulianCentury",
 			Handler:    _JulianService_TimeJulianCentury_Handler,
+		},
+		{
+			MethodName: "JulianDayFromJulianCentury",
+			Handler:    _JulianService_JulianDayFromJulianCentury_Handler,
+		},
+		{
+			MethodName: "DayFromJulianDay",
+			Handler:    _JulianService_DayFromJulianDay_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

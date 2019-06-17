@@ -1,18 +1,12 @@
 syntax = "proto3";
 package v1;
 
-// ToConvert
 message ConvertRequest {
     // Date and time to convert
     int32 year = 1;
     int32 month = 2;
     int32 day = 3;
     double hour = 4;
-}
-
-// Response that contains data for created todo task
-message ConvertResponse{
-    double julianDateTime = 1;
 }
 
 message JulianResponse{
@@ -23,9 +17,17 @@ message JulianRequest{
     double julianDateTime = 1;
 }
 
+message CalendarResponse{
+    int32 year = 1;
+    int32 month = 2;
+    int32 day = 3;
+}
+
 // Service to manage list of todo tasks
 service JulianService {
     // Convert to Julian date
-    rpc Convert(ConvertRequest) returns (ConvertResponse);
+    rpc Convert(ConvertRequest) returns (JulianResponse);
     rpc TimeJulianCentury(JulianRequest) returns (JulianResponse);
+    rpc JulianDayFromJulianCentury(JulianRequest) returns (JulianResponse);
+    rpc DayFromJulianDay(JulianRequest) returns (CalendarResponse);
 }

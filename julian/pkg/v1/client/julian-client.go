@@ -27,7 +27,7 @@ func (j *JulianClient) newConnection() v1.JulianServiceClient {
 	return v1.NewJulianServiceClient(conn)
 }
 
-func (j *JulianClient) Convert(year, month, day int32, hour float64) (*v1.ConvertResponse, error) {
+func (j *JulianClient) Convert(year, month, day int32, hour float64) (*v1.JulianResponse, error) {
 
 	c := j.newConnection()
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
@@ -43,14 +43,14 @@ func (j *JulianClient) Convert(year, month, day int32, hour float64) (*v1.Conver
 	return c.Convert(ctx, &req)
 }
 
-func (j *JulianClient) TimeJulianCentury(julianDay float64) float64 {
+func (j *JulianClient) TimeJulianCentury(julianDay float64) (*v1.JulianResponse, error) {
 	c := j.newConnection()
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	// TimeJulianCentury
 	req := v1.JulianRequest{
-		JulianDay: julianDay,
+		JulianDateTime: julianDay,
 	}
 	return c.TimeJulianCentury(ctx, &req)
 }
