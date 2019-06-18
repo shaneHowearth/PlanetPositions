@@ -16,7 +16,6 @@ type JulianClient struct {
 
 func (j *JulianClient) newConnection() v1.JulianServiceClient {
 
-	// Should I pool this?
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(j.address, grpc.WithInsecure())
 	if err != nil {
@@ -53,4 +52,30 @@ func (j *JulianClient) TimeJulianCentury(julianDay float64) (*v1.JulianResponse,
 		JulianDateTime: julianDay,
 	}
 	return c.TimeJulianCentury(ctx, &req)
+}
+
+// JulianDayFromJulianCentury -
+func (j *JulianClient) JulianDayFromJulianCentury(julianDay float64) (*v1.JulianResponse, error) {
+	c := j.newConnection()
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	// TimeJulianCentury
+	req := v1.JulianRequest{
+		JulianDateTime: julianDay,
+	}
+	return c.JulianDayFromJulianCentury(ctx, &req)
+}
+
+// DayFromJulianDay -
+func (j *JulianClient) DayFromJulianDay(julianDay float64) (*v1.CalendarResponse, error) {
+	c := j.newConnection()
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	// TimeJulianCentury
+	req := v1.JulianRequest{
+		JulianDateTime: julianDay,
+	}
+	return c.DayFromJulianDay(ctx, &req)
 }
