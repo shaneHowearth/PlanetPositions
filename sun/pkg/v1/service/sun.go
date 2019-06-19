@@ -2,7 +2,6 @@ package v1
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"planetpositions/sun/grpc/v1"
 
@@ -17,12 +16,11 @@ const (
 // sunServiceServer is implementation of v1.SunServiceServer proto interface
 type sunServiceServer struct {
 	jc.JulianClient
-	db *sql.DB
 }
 
 // NewSunService creates Sun service
-func NewSunService(db *sql.DB) v1.SunServiceServer {
-	s := sunServiceServer{db: db}
+func NewSunService() v1.SunServiceServer {
+	s := sunServiceServer{}
 	s.Address = "julian"
 	return &s
 }
