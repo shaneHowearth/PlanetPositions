@@ -12,13 +12,13 @@ import (
 
 // SunClient -
 type SunClient struct {
-	address string
+	Address string
 }
 
 func (s *SunClient) newConnection() v1.SunServiceClient {
 
 	// Set up a connection to the server.
-	conn, err := grpc.Dial(s.address, grpc.WithInsecure())
+	conn, err := grpc.Dial(s.Address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
