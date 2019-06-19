@@ -24,7 +24,7 @@ func Routes() *chi.Mux {
 	)
 
 	router.Route("/v1", func(r chi.Router) {
-		r.Mount("/api/todo", planetRoutes())
+		r.Mount("/api", planetRoutes())
 	})
 
 	return router
