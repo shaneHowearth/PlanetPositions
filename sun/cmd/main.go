@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"net"
+	"os"
 
 	v1 "planetpositions/sun/grpc/v1"
 	sun "planetpositions/sun/pkg/v1/service"
@@ -14,14 +15,12 @@ import (
 
 type server struct{}
 
-const (
-	port = ":50051"
-)
-
 var ss = sun.NewSunService()
 
 func main() {
-	lis, err := net.Listen("tcp", port)
+
+	portNum := os.Getenv("PORT_NUM")
+	lis, err := net.Listen("tcp", portNum)
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
 	}
