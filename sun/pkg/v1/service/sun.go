@@ -22,7 +22,9 @@ type sunServiceServer struct {
 
 // NewSunService creates Sun service
 func NewSunService(db *sql.DB) v1.SunServiceServer {
-	return &sunServiceServer{db: db}
+	s := sunServiceServer{db: db}
+	s.Address = "julian"
+	return &s
 }
 
 func (s *sunServiceServer) GetSunrise(ctx context.Context, req *v1.SunriseRequest) (*v1.SunriseTime, error) {

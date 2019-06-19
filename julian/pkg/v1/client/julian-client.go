@@ -11,13 +11,13 @@ import (
 )
 
 type JulianClient struct {
-	address string
+	Address string
 }
 
 func (j *JulianClient) newConnection() v1.JulianServiceClient {
 
 	// Set up a connection to the server.
-	conn, err := grpc.Dial(j.address, grpc.WithInsecure())
+	conn, err := grpc.Dial(j.Address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}

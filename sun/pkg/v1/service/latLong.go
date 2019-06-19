@@ -167,22 +167,22 @@ func (s *sunServiceServer) SolNoonUTC(t, longitude float64) (float64, error) {
 	// First pass uses approximate solar noon to calculate eqtime
 	jd, err := s.JulianDayFromJulianCentury(t)
 	if err != nil {
-		return 0, fmt.Errorf("Solnoon encountered the following error when executing first JulianDayFromJulianCentury: %v", err)
+		return 0, fmt.Errorf("solnoon encountered the following error when executing first JulianDayFromJulianCentury: %v", err)
 	}
 	tnoon, err := s.TimeJulianCentury(jd.JulianDateTime + longitude/360.0)
 	if err != nil {
-		return 0, fmt.Errorf("Solnoon encountered the following error when executing TimeJulianCentury for tnoon: %v", err)
+		return 0, fmt.Errorf("solnoon encountered the following error when executing TimeJulianCentury for tnoon: %v", err)
 	}
 	eqTime := s.EquationOfTime(tnoon.JulianDateTime)
 	solNoonUTC := 720 + (longitude * 4) - eqTime // min
 
 	jd, err = s.JulianDayFromJulianCentury(t)
 	if err != nil {
-		return 0, fmt.Errorf("Solnoon encountered the following error when executing second JulianDayFromJulianCentury: %v", err)
+		return 0, fmt.Errorf("solnoon encountered the following error when executing second JulianDayFromJulianCentury: %v", err)
 	}
 	newt, err := s.TimeJulianCentury(jd.JulianDateTime - 0.5 + solNoonUTC/1440.0)
 	if err != nil {
-		return 0, fmt.Errorf("Solnoon encountered the following error when executing TimeJulianCentury for newt: %v", err)
+		return 0, fmt.Errorf("solnoon encountered the following error when executing TimeJulianCentury for newt: %v", err)
 	}
 
 	eqTime = s.EquationOfTime(newt.JulianDateTime)
