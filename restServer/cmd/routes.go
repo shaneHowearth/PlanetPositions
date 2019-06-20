@@ -10,7 +10,7 @@ import (
 	"github.com/go-chi/chi"
 )
 
-var sc = sun.SunClient{Address: "sun"}
+var sc = sun.SunClient{Address: "sun.planet_positions:5055"}
 
 func planetRoutes() *chi.Mux {
 	router := chi.NewRouter()

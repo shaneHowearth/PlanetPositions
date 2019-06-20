@@ -14,21 +14,21 @@ type JulianClient struct {
 	Address string
 }
 
-func (j *JulianClient) newConnection() v1.JulianServiceClient {
+func (j *JulianClient) newConnection() (v1.JulianServiceClient, *grpc.ClientConn) {
 
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(j.Address, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
-	defer conn.Close()
 
-	return v1.NewJulianServiceClient(conn)
+	return v1.NewJulianServiceClient(conn), conn
 }
 
 func (j *JulianClient) Convert(year, month, day int32, hour float64) (*v1.JulianResponse, error) {
 
-	c := j.newConnection()
+	c, conn := j.newConnection()
+	defer conn.Close()
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -43,7 +43,8 @@ func (j *JulianClient) Convert(year, month, day int32, hour float64) (*v1.Julian
 }
 
 func (j *JulianClient) TimeJulianCentury(julianDay float64) (*v1.JulianResponse, error) {
-	c := j.newConnection()
+	c, conn := j.newConnection()
+	defer conn.Close()
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -56,7 +57,8 @@ func (j *JulianClient) TimeJulianCentury(julianDay float64) (*v1.JulianResponse,
 
 // JulianDayFromJulianCentury -
 func (j *JulianClient) JulianDayFromJulianCentury(julianDay float64) (*v1.JulianResponse, error) {
-	c := j.newConnection()
+	c, conn := j.newConnection()
+	defer conn.Close()
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -69,7 +71,8 @@ func (j *JulianClient) JulianDayFromJulianCentury(julianDay float64) (*v1.Julian
 
 // DayFromJulianDay -
 func (j *JulianClient) DayFromJulianDay(julianDay float64) (*v1.CalendarResponse, error) {
-	c := j.newConnection()
+	c, conn := j.newConnection()
+	defer conn.Close()
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 

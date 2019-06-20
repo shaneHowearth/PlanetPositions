@@ -17,7 +17,7 @@ type server struct{}
 
 func main() {
 	portNum := os.Getenv("PORT_NUM")
-	lis, err := net.Listen("tcp", portNum)
+	lis, err := net.Listen("tcp", "0.0.0.0:"+portNum)
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
 	}

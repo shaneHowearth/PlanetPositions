@@ -10,7 +10,7 @@ func calcDayOfYear(month, day int32, leapYear bool) int32 {
 	if !leapYear {
 		k = 2
 	}
-	dayOfYear := int32(math.Floor(float64(275*month))/float64(9)) - k*int32(math.Floor(float64(month+9)/float64(12))) + day - int32(30)
+	dayOfYear := int32(float64(275*month)/float64(9)) - k*int32(math.Floor(float64(month+9)/float64(12))) + day - int32(30)
 	return dayOfYear
 }
 
