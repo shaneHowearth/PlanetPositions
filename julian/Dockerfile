@@ -16,6 +16,6 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -v -o /go/bin/julian julian/cmd/main.go
 
 # run options
-ENV portNum=5055
+ENV PORT_NUM=5055
 EXPOSE 5055
 ENTRYPOINT ["julian"]
