@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net"
 	"os"
@@ -31,8 +32,11 @@ func main() {
 
 // Convert -
 func (s *server) Convert(ctx context.Context, req *v1.ConvertRequest) (*v1.JulianResponse, error) {
-	jd := julian.GetJulianDay(req.GetYear(), req.GetMonth(), req.GetDay(), req.GetHour())
-	return &v1.JulianResponse{JulianDateTime: jd}, nil
+	jd, err := julian.GetJulianDay(req.GetYear(), req.GetMonth(), req.GetDay(), req.GetHour())
+	if err != nil {
+		return nil, fmt.Errorf("error getting julian day: %v", err)
+	}
+	return &v1.JulianResponse{JulianDateTime: float64(jd)}, nil
 }
 
 // TimeJulianCentury -
@@ -44,7 +48,7 @@ func (s *server) TimeJulianCentury(ctx context.Context, req *v1.JulianRequest) (
 // JulianDayFromJulianCentury -
 func (s *server) JulianDayFromJulianCentury(ctx context.Context, req *v1.JulianRequest) (*v1.JulianResponse, error) {
 
-	tjc := julian.JulianDayFromJulianCentury(req.GetJulianDateTime())
+	tjc := julian.GetJulianDayFromJulianCentury(req.GetJulianDateTime())
 	return &v1.JulianResponse{JulianDateTime: tjc}, nil
 }
 

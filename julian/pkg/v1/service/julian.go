@@ -101,6 +101,6 @@ func TimeJulianCentury(julianDay float64) float64 {
 }
 
 // JulianDayFromJulianCentury -
-func iJulianDayFromJulianCentury(t float64) float64 {
+func GetJulianDayFromJulianCentury(t float64) float64 {
 	return t*century + jan12000
 }
