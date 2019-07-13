@@ -14,7 +14,7 @@ RUN go mod download
 COPY . .
 
 # build time
-RUN CGO_ENABLED=0 GOOS=linux go build -v -o /go/bin/restServer restServer/cmd/*.go
+RUN CGO_ENABLED=0 GOOS=linux go build -v -o /go/bin/restServer restServer/cmd/main.go restServer/cmd/routes.go
 
 # run options
 ENV PORT_NUM=5055
